@@ -23,6 +23,7 @@ namespace Week04_DR7MU3
         {
             InitializeComponent();
             LoadData();
+            CreateExcel();
         }
 
         private void LoadData()
@@ -106,12 +107,13 @@ namespace Week04_DR7MU3
                 values[counter, 6] = f.FloorArea;
                 values[counter, 7] = f.Price;
                 values[counter, 8] = "="+GetCell(counter+2,7)+"/"+GetCell(counter+2,6);
-
+                counter++;
                 xlSheet.get_Range
                     (
                         GetCell(2, 1),
                         GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
             }
+
         }
 
         private string GetCell(int x, int y)
