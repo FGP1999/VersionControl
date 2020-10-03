@@ -132,6 +132,7 @@ namespace Week04_DR7MU3
 
             Excel.Range lastColumnRange = xlSheet.get_Range(GetCell(2, headers.Length), GetCell(Flats.Count+1, headers.Length));
             lastColumnRange.Interior.Color = Color.LightGreen;
+            lastColumnRange.NumberFormat = "#,##0.00";
         }
 
         private string GetCell(int x, int y)
