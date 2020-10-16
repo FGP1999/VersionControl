@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartRateData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -42,16 +42,16 @@
             // 
             // chartRateData
             // 
-            chartArea6.Name = "ChartArea1";
-            this.chartRateData.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chartRateData.Legends.Add(legend6);
+            chartArea9.Name = "ChartArea1";
+            this.chartRateData.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chartRateData.Legends.Add(legend9);
             this.chartRateData.Location = new System.Drawing.Point(469, 48);
             this.chartRateData.Name = "chartRateData";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chartRateData.Series.Add(series6);
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.chartRateData.Series.Add(series9);
             this.chartRateData.Size = new System.Drawing.Size(319, 300);
             this.chartRateData.TabIndex = 0;
             this.chartRateData.Text = "chart1";
@@ -75,8 +75,6 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "EUR"});
             this.comboBox1.Location = new System.Drawing.Point(469, 11);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);

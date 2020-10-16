@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
+using Webszolgaltatas.Entities;
 using Webszolgaltatas.MnbServiceReference;
 
 namespace Webszolgaltatas
@@ -16,10 +17,31 @@ namespace Webszolgaltatas
     public partial class Form1 : Form
     {
         BindingList<Entities.RateData> Rates = new BindingList<Entities.RateData>();
+        BindingList<string> Currencies = new BindingList<string>();
         public string pst;
         public Form1()
         {
             InitializeComponent();
+          
+            var mnbService = new MNBArfolyamServiceSoapClient();
+
+            var request = new GetCurrenciesRequestBody()
+            {
+
+            };
+
+            var response = mnbService.GetCurrencies(request);
+            var result = response.GetCurrenciesResult;
+            var newxml = new XmlDocument();
+            newxml.LoadXml(result);
+            foreach (XmlElement element in newxml.DocumentElement)
+            {
+                for (int i = 0; i < element.ChildNodes.Count; i++)
+                {
+                    var childElement = (XmlElement)element.ChildNodes[i];
+                    Currencies.Add(childElement.InnerText);
+                }
+            }
             RefreshData();
         }
 
@@ -27,6 +49,7 @@ namespace Webszolgaltatas
         {
             Rates.Clear();
             dataGridView1.DataSource = Rates;
+            comboBox1.DataSource = Currencies;
             GetExchangeRatesFunction();
             XMLProcess();
             Diagram();
@@ -62,6 +85,8 @@ namespace Webszolgaltatas
                 rate.Date = DateTime.Parse(element.GetAttribute("date"));
 
                 var childElement = (XmlElement)element.ChildNodes[0];
+                if (childElement == null)
+                    continue;
                 rate.Currency = childElement.GetAttribute("curr");
 
                 var unit = decimal.Parse(childElement.GetAttribute("unit"));
