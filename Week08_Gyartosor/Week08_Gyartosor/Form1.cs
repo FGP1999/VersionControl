@@ -7,29 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Week08_Gyartosor.Abstractions;
 
 namespace Week08_Gyartosor
 {
     public partial class Form1 : Form
     {
         private List<Abstractions.Toy> _toys = new List<Abstractions.Toy>();
+        private Toy _nextToy;
 
-        private Entities.CarFactory _IToyFactory;
-        public Entities.CarFactory IToyFactory
+        private IToyFactory _factory;
+        public IToyFactory Factory
         {
-            get { return _IToyFactory; }
-            set { _IToyFactory = value; }
+            get { return _factory; }
+            set
+            {
+                _factory = value;
+                DisplayNext();
+            }
         }
 
         public Form1()
         {
             InitializeComponent();
-            IToyFactory = new Entities.CarFactory();
         }
 
         private void CreateTimer_Tick(object sender, EventArgs e)
         {
-            var toy = IToyFactory.CreateNew();
+            var toy = Factory.CreateNew();
             _toys.Add(toy);
             toy.Left = -toy.Width;
             mainPanel.Controls.Add(toy);
@@ -51,6 +56,26 @@ namespace Week08_Gyartosor
                 mainPanel.Controls.Remove(oldestToy);
                 _toys.Remove(oldestToy);
             }
+        }
+
+        private void CarButton_Click(object sender, EventArgs e)
+        {
+            Factory = new Entities.CarFactory();
+        }
+
+        private void BallButton_Click(object sender, EventArgs e)
+        {
+            Factory = new Entities.BallFactory();
+        }
+
+        private void DisplayNext()
+        {
+            if (_nextToy != null)
+                Controls.Remove(_nextToy);
+            _nextToy = Factory.CreateNew();
+            _nextToy.Top = label1.Top + label1.Height + 20;
+            _nextToy.Left = label1.Left;
+            Controls.Add(_nextToy);
         }
     }
 }
