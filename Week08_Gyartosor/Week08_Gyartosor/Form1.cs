@@ -65,7 +65,10 @@ namespace Week08_Gyartosor
 
         private void BallButton_Click(object sender, EventArgs e)
         {
-            Factory = new Entities.BallFactory();
+            Factory = new Entities.BallFactory
+            {
+                BallColor = button1.BackColor
+            };
         }
 
         private void DisplayNext()
@@ -76,6 +79,17 @@ namespace Week08_Gyartosor
             _nextToy.Top = label1.Top + label1.Height + 20;
             _nextToy.Left = label1.Left;
             Controls.Add(_nextToy);
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var colorPicker = new ColorDialog();
+
+            colorPicker.Color = button.BackColor;
+            if (colorPicker.ShowDialog() != DialogResult.OK)
+                return;
+            button.BackColor = colorPicker.Color;
         }
     }
 }
