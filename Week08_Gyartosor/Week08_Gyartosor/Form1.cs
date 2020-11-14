@@ -12,44 +12,44 @@ namespace Week08_Gyartosor
 {
     public partial class Form1 : Form
     {
-        private List<Entities.Ball> _balls = new List<Entities.Ball>();
+        private List<Abstractions.Toy> _toys = new List<Abstractions.Toy>();
 
-        private Entities.BallFactory _factory;
-        public Entities.BallFactory Factory
+        private Entities.CarFactory _IToyFactory;
+        public Entities.CarFactory IToyFactory
         {
-            get { return _factory; }
-            set { _factory = value; }
+            get { return _IToyFactory; }
+            set { _IToyFactory = value; }
         }
 
         public Form1()
         {
             InitializeComponent();
-            Factory = new Entities.BallFactory();
+            IToyFactory = new Entities.CarFactory();
         }
 
         private void CreateTimer_Tick(object sender, EventArgs e)
         {
-            var ball = Factory.CreateNew();
-            _balls.Add(ball);
-            ball.Left = -ball.Width;
-            mainPanel.Controls.Add(ball);
+            var toy = IToyFactory.CreateNew();
+            _toys.Add(toy);
+            toy.Left = -toy.Width;
+            mainPanel.Controls.Add(toy);
         }
 
         private void ConveyorTimer_Tick(object sender, EventArgs e)
         {
             var maxPosition = 0;
-            foreach (var ball in _balls)
+            foreach (var toy in _toys)
             {
-                ball.MoveBall();
-                if (ball.Left > maxPosition)
-                    maxPosition = ball.Left;
+                toy.MoveToy();
+                if (toy.Left > maxPosition)
+                    maxPosition = toy.Left;
             }
 
             if (maxPosition > 1000)
             {
-                var oldestBall = _balls[0];
-                mainPanel.Controls.Remove(oldestBall);
-                _balls.Remove(oldestBall);
+                var oldestToy = _toys[0];
+                mainPanel.Controls.Remove(oldestToy);
+                _toys.Remove(oldestToy);
             }
         }
     }

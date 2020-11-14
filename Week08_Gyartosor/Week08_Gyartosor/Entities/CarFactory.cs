@@ -7,11 +7,11 @@ using Week08_Gyartosor.Abstractions;
 
 namespace Week08_Gyartosor.Entities
 {
-    public class BallFactory : IToyFactory
+    public class CarFactory : IToyFactory
     {
         public Toy CreateNew()
         {
-            return new Ball();
+            return new Car();
         }
     }
 }
