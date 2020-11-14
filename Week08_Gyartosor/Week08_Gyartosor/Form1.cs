@@ -91,5 +91,14 @@ namespace Week08_Gyartosor
                 return;
             button.BackColor = colorPicker.Color;
         }
+
+        private void PresentButton_Click(object sender, EventArgs e)
+        {
+            Factory = new Entities.PresentFactory
+            {
+                RibbonColor = button2.BackColor,
+                BoxColor = button3.BackColor
+            };
+        }
     }
 }
