@@ -33,6 +33,7 @@ namespace UnitTestExample.Controllers
 
             var account = new Account()
             {
+                ID = ToGuid(AccountManager.Accounts.Count+1),
                 Email = email,
                 Password = password
             };
@@ -41,6 +42,13 @@ namespace UnitTestExample.Controllers
 
             return newAccount;
 
+        }
+
+        public static Guid ToGuid(int value)
+        {
+            byte[] bytes = new byte[16];
+            BitConverter.GetBytes(value).CopyTo(bytes, 0);
+            return new Guid(bytes);
         }
 
         public bool ValidateEmail(string email)
