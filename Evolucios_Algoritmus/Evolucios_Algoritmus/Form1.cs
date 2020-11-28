@@ -56,6 +56,7 @@ namespace Evolucios_Algoritmus
             {
                 winnerBrain = winners.FirstOrDefault().Brain.Clone();
                 gc.GameOver -= Gc_GameOver;
+                button1.Visible = true;
                 return;
             }
             
@@ -75,6 +76,15 @@ namespace Evolucios_Algoritmus
             }
             
             gc.Start();
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            gc.ResetCurrentLevel();
+            gc.AddPlayer(winnerBrain.Clone());
+            gc.AddPlayer();
+            ga.Focus();
+            gc.Start(true);
         }
     }
 }
